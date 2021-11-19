@@ -10,41 +10,42 @@ public class AccountController {
 	
 	public Customer createCustomer(String name, String address, String type) {
 		if(type.equals("person")) {
-			Person person=new Person(name, address);
-			customers.add(person);
-			return	person;
+			Customer customer=new Person(name, address);
+			customers.add(customer);
+			return customer;
 		}else{
-			Company company=new Company(name, address);
+			Customer company=new Company(name, address);
 			customers.add(company);
 			return company;
-		}
-		
+		}	
 	}
 	
 	public Account createAccount(Customer customer, String type) {
 		if(type.equals("checking")) {
-			Account account=new CheckingAccount();
-			accounts.add(account);
-			customer.addAccount(account);
-			return account;	
+			CheckingAccount checkingAccount=new CheckingAccount();
+			accounts.add(checkingAccount);
+			customer.addAccount(checkingAccount);
+			return checkingAccount;	
 		}else {
-			Account account=new SavingsAccount();
-			accounts.add(account);
-			customer.addAccount(account);
-			return account;	
+			SavingsAccount savingsAccount=new SavingsAccount();
+			accounts.add(savingsAccount);
+			customer.addAccount(savingsAccount);
+			return savingsAccount;	
 		}
 	}
 	
 	public void removeCustomer(Customer customer) {
-		
 		customers.remove(customer);
-		
-		
+		for(Account a:customer.getAccounts()) {
+			accounts.remove(a);
+		}	
 	}
 	
 	public void removeAccount(Account account) {
 		accounts.remove(account);
-		
+		for(Customer c:customers) {
+			c.getAccounts().remove(account);
+		}		
 	}
 
 	public List<Customer> getCustomers() {
