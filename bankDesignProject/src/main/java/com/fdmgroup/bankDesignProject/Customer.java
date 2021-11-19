@@ -27,7 +27,7 @@ public abstract class Customer {
 		accounts.remove(account);
 	}
 	
-	public abstract void chargeAllAccounts();
+	public abstract void chargeAllAccounts(double amount);
 	
 	public List<Account> getAccounts() {
 		return accounts;

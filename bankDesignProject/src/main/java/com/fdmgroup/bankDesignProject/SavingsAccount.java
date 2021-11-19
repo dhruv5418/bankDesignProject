@@ -18,7 +18,6 @@ public class SavingsAccount extends Account {
 
 	@Override
 	public double withdraw(double amount) {
-		// TODO Auto-generated method stub
 		if(amount>balance) {
 			return 0;
 		}else {
